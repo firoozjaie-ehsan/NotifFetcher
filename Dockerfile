@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# نصب pika
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# کپی فایل Python
+COPY main.py /main.py
+
+COPY . .
+# به جای اجرای خودکار، کانتینر را همیشه روشن نگه دار
+CMD ["tail", "-f", "/dev/null"]
+# CMD ["python", "main.py"]
