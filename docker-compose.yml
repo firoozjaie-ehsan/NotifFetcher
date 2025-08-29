@@ -18,10 +18,10 @@ services:
       - rabbitmq
     working_dir: /app
     volumes:
-      - ./main.py:/app/main.py
-      - ./connection.py:/app/connection.py
-      - ./config.py:/app/config.py
-      - ./.test.env:/app/.test.env
+      - .:/app
+    environment:
+    # os.environ.get("RUN_MODE")  با این مقدار دهی مقدار اولیه رانمود زمان اجرا ست میشه و با دستور روبرو قابل خواندن
+      RUN_MODE: DEBUG
 
 volumes:
   rabbitmq_data:
