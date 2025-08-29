@@ -1,11 +1,13 @@
 from config import Config
 import os
 def test_config_singleton():
+    print("Starting config singleton test in test_config_singleton...")
     config1 = Config()
     config2 = Config()
     assert config1 is config2, "Config should be a singleton"
     
 def test_config_default_values():
+    print("Clearing environment variables for config test in test_config_default_values...")
     os.environ.pop("RABBITMQ_HOST", None)
     os.environ.pop("RABBITMQ_PORT", None)
     os.environ.pop("RABBITMQ_USER", None)
@@ -24,6 +26,7 @@ def test_config_default_values():
     os.environ["RUN_MODE"] = "test"
     
 def test_is_test_mode():
+    print("Setting RUN_MODE to test for config test in test_is_test_mode...")
     config = Config(override=True)
     
     config.RUN_MODE == "test"
@@ -38,6 +41,7 @@ def test_is_test_mode():
     config.RUN_MODE = "test"
     
 def test_is_debug_mode():
+    print("Setting RUN_MODE to test for config test in test_is_debug_mode...")
     config = Config(override=True)
     
     config.RUN_MODE == "test"
@@ -52,6 +56,7 @@ def test_is_debug_mode():
     config.RUN_MODE = "test"
     
 def test_waiting_factor():
+    print("Setting RUN_MODE to test for config test in test_waiting_factor...")
     config = Config(override=True)
     
     config.RUN_MODE == "test"

@@ -2,7 +2,7 @@ from connection import RabbitMQConnection
 
 
 def test_rabbitmq_singleton():
-    print("Starting connection to RabbitMQ...")
+    print("Starting verify singleton RabbitMQ connection  in test_rabbitmq_singleton...")
     c1 = RabbitMQConnection()
     c2 = RabbitMQConnection()
     print("Are both connections the same instance?", c1 is c2)

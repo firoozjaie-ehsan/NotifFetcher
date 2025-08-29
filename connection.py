@@ -23,7 +23,7 @@ class RabbitMQConnection:
         self.connection = None
         print(f"Initialized with host={self.host}, port={self.port}, user={self.username}")
         
-        
+    # when to use __enter__ and __exit__ run that use in with statement or context manager
     def __enter__(self):
         print("__enter__: Entering context manager for RabbitMQConnection")
         self.connect()
