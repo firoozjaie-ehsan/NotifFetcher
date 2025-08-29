@@ -6,27 +6,38 @@ class RabbitMQConnection:
     _instance = None
     
     def __new__(cls, *args, **kwargs):
+        print("__new__:Creating new instance of RabbitMQConnection")
         if cls._instance is None:
+            print("__new__:No existing instance found, creating one.")
             cls._instance = super().__new__(cls)
+        else:
+            print("__new__:Existing instance found, returning it.")
         return cls._instance
     
     def __init__(self, host = "rabbitmq", port = 5672, username = "admin", password = "admin"):
+        print("Initializing RabbitMQConnection")
         self.host = host
         self.port = port
         self.username = username
         self.password = password
         self.connection = None
+        print(f"Initialized with host={self.host}, port={self.port}, user={self.username}")
         
         
     def __enter__(self):
+        print("__enter__: Entering context manager for RabbitMQConnection")
         self.connect()
         return self
     
     def __exit__(self, exit_type, exit_val, exit_tb):
+        print("__exit__: Exiting context manager for RabbitMQConnection")
         self.close()
     
     
     def connect(self):
+        if self.is_connected():
+            print("Already connected to RabbitMQ server.")
+            return
         retries = 0
         while retries < 30:
             try:
