@@ -63,7 +63,7 @@ def test_waiting_factor():
     assert config.waiting_factor() == 0
     
     config.RUN_MODE = "debug"
-    assert config.waiting_factor() == 2
+    assert config.waiting_factor() == 1
     
     config.RUN_MODE = "prod"
     assert config.waiting_factor() == 2
