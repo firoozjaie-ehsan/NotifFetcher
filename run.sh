@@ -1,4 +1,12 @@
 
+# Different modes of running the application
+docker compose --env-file .env.dev up --build           for development and debug
+
+docker compose --env-file .env.test up --build          for testing
+
+docker compose --env-file .env.prod up -d               for production
+
+
 docker-compose build python-app
 docker-compose up -d
 docker compose ps

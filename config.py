@@ -15,7 +15,7 @@ class Config():
         
         self.RUN_MODE = os.environ.get("RUN_MODE", "DEBUG")
         if load_from_file:
-            env_file_path = self.RUN_MODE.lower() + ".env"
+            env_file_path =  ".env."+self.RUN_MODE.lower()
             if os.path.exists(env_file_path):
                 load_dotenv(env_file_path)
                 

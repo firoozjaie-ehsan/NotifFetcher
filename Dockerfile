@@ -4,10 +4,7 @@ WORKDIR /app
 
 # نصب pika
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# کپی فایل Python
-COPY main.py /main.py
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 # به جای اجرای خودکار، کانتینر را همیشه روشن نگه دار

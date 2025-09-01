@@ -1,27 +1,32 @@
 services:
   rabbitmq:
     image: rabbitmq:3.13-management
-    container_name: rabbitmq_test
+    container_name: rabbitmq_${RUN_MODE}
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
   python-app:
     build: .
-    container_name: python_test
+    container_name: python_${RUN_MODE}
     depends_on:
       - rabbitmq
     working_dir: /app
     volumes:
       - .:/app
     environment:
-    # os.environ.get("RUN_MODE")  با این مقدار دهی مقدار اولیه رانمود زمان اجرا ست میشه و با دستور روبرو قابل خواندن
-      RUN_MODE: DEBUG
+      # os.environ.get("RUN_MODE")  با این مقدار دهی مقدار اولیه رانمود زمان اجرا ست میشه و با دستور روبرو قابل خواندن
+      RUN_MODE: ${RUN_MODE}
+      RABBITMQ_HOST: ${RABBITMQ_HOST}
+      RABBITMQ_PORT: ${RABBITMQ_PORT}
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASS: ${RABBITMQ_PASS}
+      RABBITMQ_VHOST: ${RABBITMQ_VHOST}
 
 volumes:
   rabbitmq_data:
